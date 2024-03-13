@@ -1,20 +1,32 @@
 package com.example.convidados
 
+import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.controls.actions.FloatAction
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var databaseApp:SQLiteDatabase
     private var guestList: ArrayList<GuestModel> = ArrayList()
     private lateinit var listViewGuests: ListView
+    private lateinit var btnAdd: FloatingActionButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        btnAdd = findViewById(R.id.btnAdd)
+        btnAdd.setOnClickListener{
+            val intent = Intent(this, GuestForm::class.java)
+            startActivity(intent)
+
+        }
          listViewGuests = findViewById<ListView>(R.id.listViewGuests)
         createDatabase()
         getGuestList()
