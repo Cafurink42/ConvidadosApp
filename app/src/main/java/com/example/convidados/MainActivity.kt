@@ -17,8 +17,9 @@ class MainActivity : AppCompatActivity() {
     private var guestList: ArrayList<GuestModel> = ArrayList()
     private lateinit var listViewGuests: ListView
     private lateinit var btnAdd: FloatingActionButton
+    private var ID_SELECIONADO: Int? = null
 
-    override fun onResume() { //deixa a MainActivity em resume atualiza a lista
+    override fun onResume() { //deixa a MainActivity em resume e atualiza a lista
         super.onResume()
         getGuestList()
     }
@@ -29,10 +30,20 @@ class MainActivity : AppCompatActivity() {
         btnAdd = findViewById(R.id.btnAdd)
         btnAdd.setOnClickListener{
             val intent = Intent(this, GuestForm::class.java)
+
             startActivity(intent)
 
         }
          listViewGuests = findViewById<ListView>(R.id.listViewGuests)
+        listViewGuests.setOnItemClickListener { _,_, idx, _ ->
+            println ("O indice da lista clicado é o $idx")
+            println ("o id da pessoa clicado é o ${guestList[idx].id}")
+            ID_SELECIONADO = guestList[idx].id
+
+            val intent = Intent(this, GuestForm::class.java)
+            intent.putExtra("ID_SELECIONADO", ID_SELECIONADO)
+            startActivity(intent)
+        } //click item da view
         createDatabase()
         getGuestList()
 
