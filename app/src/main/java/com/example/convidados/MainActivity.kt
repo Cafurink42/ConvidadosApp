@@ -18,6 +18,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listViewGuests: ListView
     private lateinit var btnAdd: FloatingActionButton
 
+    override fun onResume() { //deixa a MainActivity em resume atualiza a lista
+        super.onResume()
+        getGuestList()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
