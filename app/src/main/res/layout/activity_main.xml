@@ -4,10 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lista de convidados"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <ListView
+        android:layout_marginTop="50dp"
+        android:padding="8dp"
         android:id="@+id/listViewGuests"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -17,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:id="@+id/btnAdd"
         android:contentDescription="Botao adicionar convidado"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
